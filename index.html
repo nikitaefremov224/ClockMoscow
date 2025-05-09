@@ -1,23 +1,41 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Часы Яндекс</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background: black;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
-</head>
-<body>
-  <iframe src="https://yandex.ru/time/widget/?geoid=213&lang=ru&layout=horiz&type=digital&face=digits"></iframe>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Часы</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+      body {
+        background: black;
+        color: white;
+        font-size: 20vw; /* Сделаем размер шрифта в зависимости от ширины экрана */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: sans-serif;
+        text-align: center;
+      }
+      #clock {
+        font-size: 20vw; /* Размер шрифта на весь экран */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="clock"></div>
+    <script>
+      function updateTime() {
+        const now = new Date();
+        const options = {
+          timeZone: 'Europe/Moscow', // Устанавливаем московское время
+          hour12: false, // 24-часовой формат
+        };
+        const time = new Intl.DateTimeFormat('ru-RU', options).format(now);
+        document.getElementById('clock').textContent = time;
+      }
+      setInterval(updateTime, 1000);
+      updateTime();
+    </script>
+  </body>
 </html>
