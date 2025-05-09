@@ -8,7 +8,6 @@
       body {
         background: black;
         color: white;
-        font-size: 20vw; /* Сделаем размер шрифта в зависимости от ширины экрана */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -18,7 +17,8 @@
         text-align: center;
       }
       #clock {
-        font-size: 20vw; /* Размер шрифта на весь экран */
+        font-size: 10vw; /* Размер шрифта на весь экран */
+        white-space: nowrap; /* Не допускаем перенос строк */
       }
     </style>
   </head>
@@ -33,7 +33,15 @@
         };
         const time = new Intl.DateTimeFormat('ru-RU', options).format(now);
         document.getElementById('clock').textContent = time;
+        
+        // Изменение размера шрифта в зависимости от размеров экрана
+        const clockElement = document.getElementById('clock');
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const fontSize = Math.min(width, height) / 5; // Шрифт будет 1/5 от меньшей стороны экрана
+        clockElement.style.fontSize = `${fontSize}px`;
       }
+
       setInterval(updateTime, 1000);
       updateTime();
     </script>
