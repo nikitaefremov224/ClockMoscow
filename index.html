@@ -17,8 +17,8 @@
         text-align: center;
       }
       #clock {
-        font-size: 10vw; /* Размер шрифта на весь экран */
-        white-space: nowrap; /* Не допускаем перенос строк */
+        font-size: 20vw; /* Огромный шрифт для полноэкранного времени */
+        white-space: nowrap;
       }
     </style>
   </head>
@@ -28,18 +28,14 @@
       function updateTime() {
         const now = new Date();
         const options = {
-          timeZone: 'Europe/Moscow', // Устанавливаем московское время
-          hour12: false, // 24-часовой формат
+          timeZone: 'Europe/Moscow',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
         };
         const time = new Intl.DateTimeFormat('ru-RU', options).format(now);
         document.getElementById('clock').textContent = time;
-        
-        // Изменение размера шрифта в зависимости от размеров экрана
-        const clockElement = document.getElementById('clock');
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const fontSize = Math.min(width, height) / 5; // Шрифт будет 1/5 от меньшей стороны экрана
-        clockElement.style.fontSize = `${fontSize}px`;
       }
 
       setInterval(updateTime, 1000);
