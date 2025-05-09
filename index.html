@@ -23,7 +23,7 @@
     <script>
       function updateTime() {
         const now = new Date();
-        const time = now.toLocaleTimeString();
+        const time = now.toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow' });
         document.getElementById('clock').textContent = time;
       }
       setInterval(updateTime, 1000);
